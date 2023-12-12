@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.MyUserService;
 import ru.kata.spring.boot_security.demo.service.MyUserServicelmpl;
 
 import java.util.List;
@@ -15,11 +16,11 @@ import java.util.List;
 @Controller
 public class UsersController {
 
-    private final MyUserServicelmpl userService;
+    private final MyUserService userService;
 
 
     @Autowired
-    public UsersController(MyUserServicelmpl userService) {
+    public UsersController(MyUserService userService) {
         this.userService = userService;
     }
 
@@ -28,7 +29,7 @@ public class UsersController {
         User user = (User) authentication.getPrincipal();
         List<User> allUsers = userService.findAll();
         model.addAttribute("allUsers", allUsers);
-        model.addAttribute("user", user); // Добавьте эту строку
+        model.addAttribute("user", user);
         return "admin";
     }
 

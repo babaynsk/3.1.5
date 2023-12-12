@@ -21,7 +21,11 @@ public class UserDAOlmpl implements UserDAO {
 
     @Override
     public void saveUser(User user) {
-        entityManager.merge(user);
+        if (user.getId() != 0) {
+            entityManager.merge(user);
+        } else {
+            entityManager.persist(user);
+        }
     }
 
     @Override

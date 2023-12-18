@@ -45,17 +45,6 @@ function renderingTable(users, table) {
         });
 
 }
-function updateFormFields(user) {
-    document.getElementById('firstName').value = user.firstName;
-    document.getElementById('lastName').value = user.lastName;
-    document.getElementById('age').value = user.age;
-    document.getElementById('email').value = user.email;
-    document.getElementById('password').value = user.password;
 
-    const rolesSelect = document.getElementById('roles');
-    Array.from(rolesSelect.options).forEach(option => {
-        option.selected = user.roles.some(role => role.authority === option.value);
-    });
-}
 
 loadIntoTable("/api/allUsers", document.querySelector("table.table-striped"));

@@ -20,9 +20,7 @@ function renderingTable(users, table) {
             const rolesCell = document.createElement("td");
             rolesCell.textContent = user.roles.map(role => role.authority.substring(5)).join(', ');
             userRow.appendChild(rolesCell);
-            // updateButton.addEventListener('click', function () {
-            //     updateFormFields(user);
-            // });
+
             const updateCell = document.createElement("td");
             const updateButton = document.createElement("button");
             updateButton.setAttribute("class","btn btn-primary");

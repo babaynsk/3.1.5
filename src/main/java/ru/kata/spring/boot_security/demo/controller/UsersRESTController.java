@@ -3,6 +3,7 @@ package ru.kata.spring.boot_security.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.MyUserServicelmpl;
@@ -35,6 +36,9 @@ public class UsersRESTController {
 
         if (existingUser != null) {
             existingUser.updateFrom(updatedUser);
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String newCodedPassword = passwordEncoder.encode(updatedUser.getPassword());
+            existingUser.setPassword(newCodedPassword);
             userService.save(existingUser);
             return new ResponseEntity<>(existingUser, HttpStatus.OK);
         } else {

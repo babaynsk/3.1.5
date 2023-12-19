@@ -22,18 +22,9 @@ async function addNewUser(event) {
             roles: listOfRole
         })
     };
-
-    try {
-        const response = await fetch(urlNew, method);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        form_new.reset();
-        loadIntoTable("/api/allUsers", table);
-    } catch (error) {
-        console.error('Error during new user creation:', error);
-    }
+    const response = await fetch(urlNew, method);
+    form_new.reset();
+    loadIntoTable("/api/allUsers", table);
 }
 
 async function loadIntoTable(url, table) {

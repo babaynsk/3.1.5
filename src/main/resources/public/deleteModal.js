@@ -10,29 +10,19 @@ async function delModalData(id) {
     clearFormFieldsDel();
 
     const urlDataDel = 'api/users/' + id;
+    const usersPageDel = await fetch(urlDataDel);
+    const userData = await usersPageDel.json();
+    id_del.value = userData.id;
+    firstName_del.value = userData.firstName;
+    lastName_del.value = userData.lastName;
+    age_del.value = userData.age;
+    email_del.value = userData.email;
+    password_del.value = userData.password;
 
-    try {
-        const usersPageDel = await fetch(urlDataDel);
-
-        if (usersPageDel.ok) {
-            const userData = await usersPageDel.json();
-            id_del.value = userData.id;
-            firstName_del.value = userData.firstName;
-            lastName_del.value = userData.lastName;
-            age_del.value = userData.age;
-            email_del.value = userData.email;
-            password_del.value = userData.password;
-
-            const rolesSelectDel = document.getElementById('roles_delete');
-            Array.from(rolesSelectDel.options).forEach(option => {
-                option.selected = userData.roles.some(role => role.authority === option.value);
-            });
-        } else {
-            alert("Ошибка: " + usersPageDel.status);
-        }
-    } catch (error) {
-        console.error("Ошибка при получении данных пользователя:", error);
-    }
+    const rolesSelectDel = document.getElementById('roles_delete');
+    Array.from(rolesSelectDel.options).forEach(option => {
+        option.selected = userData.roles.some(role => role.authority === option.value);
+    });
 }
 
 function clearFormFieldsDel() {
@@ -55,18 +45,9 @@ async function delUser() {
             "Content-Type": "application/json"
         }
     };
+    const response = await fetch(urlDel, method);
+    loadIntoTable("/api/allUsers", document.querySelector("table.table-striped"));
 
-    try {
-        const response = await fetch(urlDel, method);
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        console.log("User deleted successfully");
-        loadIntoTable("/api/allUsers", document.querySelector("table.table-striped"));
-    } catch (error) {
-        console.error('Error during user deletion:', error);
-    }
 }
 const deleteUserButton = document.getElementById("delBtnModal");
 

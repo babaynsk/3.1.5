@@ -10,24 +10,14 @@ async function updModalData(id) {
     $('#updateModal').modal('show');
     clearFormFields();
     const urlDataUpd = 'api/users/' + id;
-
-    try {
-        const usersPageUpd = await fetch(urlDataUpd);
-
-        if (usersPageUpd.ok) {
-            const userData = await usersPageUpd.json();
-            id_upd.value = userData.id;
-            firstName_upd.value = userData.firstName;
-            lastName_upd.value = userData.lastName;
-            age_upd.value = userData.age;
-            email_upd.value = userData.email;
-            password_upd.value = userData.password;
-        } else {
-            alert("Ошибка: " + usersPageUpd.status);
-        }
-    } catch (error) {
-        console.error("Ошибка при получении данных пользователя:", error);
-    }
+    const usersPageUpd = await fetch(urlDataUpd);
+    const userData = await usersPageUpd.json();
+    id_upd.value = userData.id;
+    firstName_upd.value = userData.firstName;
+    lastName_upd.value = userData.lastName;
+    age_upd.value = userData.age;
+    email_upd.value = userData.email;
+    password_upd.value = userData.password;
 }
 
 function clearFormFields() {
@@ -62,17 +52,9 @@ async function updUser() {
         })
     };
 
-    try {
-        const response = await fetch(urlUpd, method);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const responseData = await response.json();
-        console.log("User updated successfully:", responseData);
-        await loadIntoTable("/api/allUsers", document.querySelector("table.table-striped"));
-    } catch (error) {
-        console.error('Error during user update:', error);
-    }
+    const response = await fetch(urlUpd, method);
+    const responseData = await response.json();
+    await loadIntoTable("/api/allUsers", document.querySelector("table.table-striped"));
 }
 
 const updateUserButton = document.getElementById("updBtnModal");

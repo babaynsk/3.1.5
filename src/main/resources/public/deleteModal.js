@@ -3,6 +3,7 @@ const firstName_del = document.getElementById('firstName_delete');
 const lastName_del = document.getElementById('lastName_delete');
 const age_del = document.getElementById('age_delete');
 const email_del = document.getElementById('email_delete');
+const username_del = document.getElementById('username_delete');
 const password_del = document.getElementById('password_delete');
 
 async function delModalData(id) {
@@ -16,7 +17,9 @@ async function delModalData(id) {
     firstName_del.value = userData.firstName;
     lastName_del.value = userData.lastName;
     age_del.value = userData.age;
+    username_del.value = userData.username
     email_del.value = userData.email;
+
     password_del.value = userData.password;
 
     const rolesSelectDel = document.getElementById('roles_delete');
@@ -31,6 +34,7 @@ function clearFormFieldsDel() {
     lastName_del.value = '';
     age_del.value = '';
     email_del.value = '';
+    username_del.value = '';
     password_del.value = '';
 
     const rolesSelectDel = document.getElementById('roles_delete');

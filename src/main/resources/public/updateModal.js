@@ -4,6 +4,7 @@ const firstName_upd = document.getElementById('firstName');
 const lastName_upd = document.getElementById('lastName');
 const age_upd = document.getElementById('age');
 const email_upd = document.getElementById('email');
+const username_upd = document.getElementById('username');
 const password_upd = document.getElementById('password');
 
 async function updModalData(id) {
@@ -17,6 +18,7 @@ async function updModalData(id) {
     lastName_upd.value = userData.lastName;
     age_upd.value = userData.age;
     email_upd.value = userData.email;
+    username_upd.value=userData.username;
     password_upd.value = userData.password;
 }
 
@@ -26,6 +28,7 @@ function clearFormFields() {
     lastName_upd.value = '';
     age_upd.value = '';
     email_upd.value = '';
+    username_upd.value = '';
     password_upd.value = '';
 
 }
@@ -48,6 +51,7 @@ async function updUser() {
             age: form_upd.age.value,
             email: form_upd.email.value,
             password: form_upd.password.value,
+            username: form_upd.username.value,
             roles: listOfRole
         })
     };

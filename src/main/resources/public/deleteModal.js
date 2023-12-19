@@ -1,4 +1,3 @@
-const form_del = document.getElementById('delModal');
 const id_del = document.getElementById('id_del');
 const firstName_del = document.getElementById('firstName_delete');
 const lastName_del = document.getElementById('lastName_delete');

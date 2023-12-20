@@ -30,4 +30,3 @@ async function addNewUser(event) {
 
 
 form_new.addEventListener('submit', addNewUser);
-loadIntoTable("/api/allUsers", table);

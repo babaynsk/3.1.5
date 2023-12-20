@@ -58,7 +58,7 @@ async function updUser() {
 
     const response = await fetch(urlUpd, method);
     const responseData = await response.json();
-    await loadIntoTable("/api/allUsers", document.querySelector("table.table-striped"));
+    loadIntoTable("/api/allUsers", document.querySelector("table.table-striped"));
 }
 
 const updateUserButton = document.getElementById("updBtnModal");

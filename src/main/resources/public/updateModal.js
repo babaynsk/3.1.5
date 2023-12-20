@@ -57,13 +57,10 @@ async function updUser() {
     };
 
     const response = await fetch(urlUpd, method);
-    const responseData = await response.json();
     loadIntoTable("/api/allUsers", document.querySelector("table.table-striped"));
 }
 
 const updateUserButton = document.getElementById("updBtnModal");
 updateUserButton.addEventListener("click", async () => {
-    console.log("Before clicking the button:");
     await updUser();
-    console.log("After clicking the button:");
 });

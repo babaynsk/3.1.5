@@ -56,8 +56,5 @@ async function delUser() {
 const deleteUserButton = document.getElementById("delBtnModal");
 
 deleteUserButton.addEventListener("click", async () => {
-    console.log("Before clicking the button:");
     await delUser();
-    console.log("After clicking the button:");
-
 });

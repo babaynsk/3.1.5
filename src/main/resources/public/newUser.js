@@ -18,6 +18,7 @@ async function addNewUser(event) {
             lastName: form_new.lastName.value,
             age: form_new.age.value,
             email: form_new.email.value,
+            username: form_new.username.value,
             password: form_new.password.value,
             roles: listOfRole
         })

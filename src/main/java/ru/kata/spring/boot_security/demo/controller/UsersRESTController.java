@@ -48,6 +48,9 @@ public class UsersRESTController {
 
     @PostMapping("/addNewUser")
     public void addNewUser(@RequestBody User user){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String newCode = passwordEncoder.encode(user.getPassword());
+        user.setPassword(newCode);
         userService.save(user);
     }
 

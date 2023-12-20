@@ -28,14 +28,6 @@ async function addNewUser(event) {
     loadIntoTable("/api/allUsers", table);
 }
 
-async function loadIntoTable(url, table) {
-    const response = await fetch(url);
-    const users = await response.json();
-    const tableBody = table.querySelector("tbody");
-    tableBody.innerHTML = "";
-    renderingTable(users, table);
-}
-
 function renderingTable(users, table) {
     const tableBody = table.querySelector("tbody");
     users.forEach(user => {

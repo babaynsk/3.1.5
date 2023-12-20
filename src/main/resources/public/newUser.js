@@ -28,25 +28,6 @@ async function addNewUser(event) {
     loadIntoTable("/api/allUsers", table);
 }
 
-function renderingTable(users, table) {
-    const tableBody = table.querySelector("tbody");
-    users.forEach(user => {
-        const userRow = document.createElement("tr");
-        userRow.setAttribute("data-id", user.id);
-
-        ['id', 'firstName', 'lastName', 'age', 'email'].forEach(prop => {
-            const cellElement = document.createElement("td");
-            cellElement.textContent = user[prop];
-            userRow.appendChild(cellElement);
-        });
-
-        const rolesCell = document.createElement("td");
-        rolesCell.textContent = user.roles.map(role => role.authority.substring(5)).join(', ');
-        userRow.appendChild(rolesCell);
-
-        tableBody.appendChild(userRow);
-    });
-}
 
 form_new.addEventListener('submit', addNewUser);
 loadIntoTable("/api/allUsers", table);
